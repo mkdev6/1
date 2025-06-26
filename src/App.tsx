@@ -425,11 +425,11 @@ function App() {
             </div>
             
             <h1 
-              className="text-5xl md:text-6xl font-bold mb-6 leading-tight cursor-pointer select-none"
+              className="text-5xl md:text-6xl font-bold mb-6 leading-tight cursor-pointer select-none space-y-4"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <div className="mb-2">
+              <div className="block">
                 <span 
                   className="inline-block animate-fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-900 to-black hover:from-blue-600 hover:via-purple-600 hover:to-cyan-600 transition-all duration-700 transform hover:scale-105"
                   style={{ animationDelay: '0.2s' }}
@@ -438,7 +438,7 @@ function App() {
                 </span>
               </div>
               
-              <div className="mb-2">
+              <div className="block">
                 <span className="relative inline-block group">
                   <span 
                     className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 animate-fade-in-up transform transition-all duration-500 hover:scale-110"
@@ -460,35 +460,35 @@ function App() {
                     |
                   </span>
                   
-                  {/* Subtle background glow - further reduced */}
+                  {/* Enhanced background glow - larger and more visible */}
                   <div 
-                    className="absolute inset-0 bg-gradient-to-r from-blue-400/5 via-cyan-400/5 to-teal-400/5 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-lg"
+                    className="absolute inset-0 bg-gradient-to-r from-blue-400/20 via-cyan-400/20 to-teal-400/20 blur-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-lg"
                     style={{
-                      transform: `scale(${1.05 + Math.sin(glowIntensity * 0.03) * 0.02})`,
-                      top: '15%',
-                      bottom: '15%',
-                      left: '-5%',
-                      right: '-5%'
+                      transform: `scale(${1.3 + Math.sin(glowIntensity * 0.05) * 0.1})`,
+                      top: '-20%',
+                      bottom: '-20%',
+                      left: '-30%',
+                      right: '-30%'
                     }}
                   ></div>
                   
-                  {/* Floating particles around text - even more subtle */}
-                  {isHovering && [...Array(4)].map((_, i) => (
+                  {/* Larger floating particles around text */}
+                  {isHovering && [...Array(8)].map((_, i) => (
                     <div
                       key={i}
-                      className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-40 animate-ping"
+                      className="absolute w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-70 animate-ping"
                       style={{
-                        left: `${30 + Math.random() * 40}%`,
-                        top: `${30 + Math.random() * 40}%`,
-                        animationDelay: `${i * 400}ms`,
-                        animationDuration: `${2 + Math.random() * 0.5}s`
+                        left: `${10 + Math.random() * 80}%`,
+                        top: `${10 + Math.random() * 80}%`,
+                        animationDelay: `${i * 250}ms`,
+                        animationDuration: `${1.8 + Math.random() * 0.7}s`
                       }}
                     ></div>
                   ))}
                 </span>
               </div>
               
-              <div>
+              <div className="block">
                 <span 
                   className="inline-block animate-fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800 hover:from-purple-600 hover:via-indigo-600 hover:to-blue-600 transition-all duration-700 transform hover:scale-105"
                   style={{ animationDelay: '0.6s' }}
