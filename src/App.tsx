@@ -430,8 +430,12 @@ function App() {
             >
               <div className="block">
                 <span 
-                  className="inline-block animate-fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-900 to-black hover:from-blue-600 hover:via-purple-600 hover:to-cyan-600 transition-all duration-700 transform hover:scale-105"
-                  style={{ animationDelay: '0.2s' }}
+                  className="relative inline-block animate-fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-900 to-black hover:from-blue-600 hover:via-purple-600 hover:to-cyan-600 transition-all duration-700 transform hover:scale-105 z-50"
+                  style={{ 
+                    animationDelay: '0.2s',
+                    position: 'relative',
+                    zIndex: 50
+                  }}
                 >
                   Lightning-Fast
                 </span>
