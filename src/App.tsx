@@ -332,9 +332,8 @@ function App() {
               ))}
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="relative bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2"
+                className="relative bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center justify-center"
               >
-                <Phone className="h-4 w-4" />
                 <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">Contact Us</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 animate-pulse rounded-full"></div>
