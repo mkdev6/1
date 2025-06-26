@@ -391,7 +391,7 @@ function App() {
       </nav>
 
       {/* Hero Section with Fixed Text Layout */}
-      <section ref={heroRef} className="relative pt-24 pb-20 min-h-screen flex items-center bg-gradient-to-br from-blue-50 via-white to-cyan-50 overflow-visible">
+      <section ref={heroRef} className="relative pt-24 pb-20 min-h-screen flex items-center bg-gradient-to-br from-blue-50 via-white to-cyan-50">
         {/* Morphing Background Shapes */}
         <div className="absolute inset-0 overflow-hidden">
           <div 
