@@ -123,6 +123,18 @@ function App() {
     particlesRef.current = particles;
   }, []);
 
+  // Smooth scroll function
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    setIsMenuOpen(false);
+  };
+
   const deliverySteps = [
     {
       icon: Smartphone,
@@ -301,27 +313,29 @@ function App() {
             {/* Desktop Navigation with Professional Menu Items */}
             <div className="hidden md:flex items-center space-x-8">
               {[
-                { name: 'Features', icon: Settings },
-                { name: 'Solutions', icon: Layers },
-                { name: 'Technology', icon: Bot },
-                { name: 'About', icon: Info },
-                { name: 'Contact', icon: Phone }
+                { name: 'Solutions', icon: Building2, target: 'delivery' },
+                { name: 'Services', icon: Layers, target: 'services' },
+                { name: 'Technology', icon: Bot, target: 'stats' },
+                { name: 'About', icon: Info, target: 'hero' }
               ].map((item, index) => (
-                <a 
+                <button 
                   key={item.name}
-                  href={`#${item.name.toLowerCase()}`} 
-                  className="relative text-gray-700 hover:text-blue-600 transition-all duration-500 group overflow-hidden flex items-center space-x-1"
+                  onClick={() => scrollToSection(item.target)}
+                  className="relative text-gray-700 hover:text-blue-600 transition-all duration-500 group overflow-hidden flex items-center space-x-1 cursor-pointer"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <item.icon className="h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
                   <span className="relative z-10">{item.name}</span>
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-cyan-600 transition-all duration-500 group-hover:w-full"></span>
                   <span className="absolute inset-0 bg-gradient-to-r from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 rounded-lg transform scale-110"></span>
-                </a>
+                </button>
               ))}
-              <button className="relative bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2">
-                <Award className="h-4 w-4" />
-                <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">Get Started</span>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="relative bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-6 py-2 rounded-full overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-2"
+              >
+                <Phone className="h-4 w-4" />
+                <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">Contact Us</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 animate-pulse"></div>
               </button>
@@ -352,16 +366,16 @@ function App() {
         >
           <div className="px-4 py-2 space-y-1">
             {[
-              { name: 'Features', icon: Settings },
-              { name: 'Solutions', icon: Layers },
-              { name: 'Technology', icon: Bot },
-              { name: 'About', icon: Info },
-              { name: 'Contact', icon: Phone }
+              { name: 'Solutions', icon: Building2, target: 'delivery' },
+              { name: 'Services', icon: Layers, target: 'services' },
+              { name: 'Technology', icon: Bot, target: 'stats' },
+              { name: 'About', icon: Info, target: 'hero' },
+              { name: 'Contact Us', icon: Phone, target: 'contact' }
             ].map((item, index) => (
-              <a 
+              <button 
                 key={item.name}
-                href={`#${item.name.toLowerCase()}`} 
-                className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 rounded-xl transition-all duration-500 transform hover:scale-105"
+                onClick={() => scrollToSection(item.target)}
+                className="flex items-center space-x-3 px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 rounded-xl transition-all duration-500 transform hover:scale-105 w-full text-left"
                 style={{ 
                   animationDelay: `${index * 100}ms`,
                   transform: isMenuOpen ? 'translateX(0) scale(1)' : 'translateX(-20px) scale(0.95)',
@@ -371,13 +385,13 @@ function App() {
               >
                 <item.icon className="h-4 w-4" />
                 <span>{item.name}</span>
-              </a>
+              </button>
             ))}
           </div>
         </div>
       </nav>
 
-      {/* Hero Section with Fixed Hover Effects */}
+      {/* Hero Section with Fixed Text Layout */}
       <section ref={heroRef} className="relative pt-24 pb-20 min-h-screen flex items-center bg-gradient-to-br from-blue-50 via-white to-cyan-50 overflow-hidden">
         {/* Morphing Background Shapes */}
         <div className="absolute inset-0 overflow-hidden">
@@ -415,67 +429,73 @@ function App() {
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
             >
-              <span 
-                className="inline-block animate-fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-900 to-black hover:from-blue-600 hover:via-purple-600 hover:to-cyan-600 transition-all duration-700 transform hover:scale-105"
-                style={{ animationDelay: '0.2s' }}
-              >
-                Lightning-Fast
-              </span>
-              <br />
-              <span className="relative inline-block group">
+              <div className="mb-2">
                 <span 
-                  className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 animate-fade-in-up transform transition-all duration-500 hover:scale-110"
-                  style={{ 
-                    animationDelay: '0.4s',
-                    textShadow: isHovering ? `0 0 ${20 + glowIntensity * 0.3}px rgba(59, 130, 246, 0.8)` : 'none',
-                    filter: isHovering ? `drop-shadow(0 0 ${10 + glowIntensity * 0.2}px rgba(6, 182, 212, 0.6))` : 'none'
-                  }}
+                  className="inline-block animate-fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-gray-800 via-gray-900 to-black hover:from-blue-600 hover:via-purple-600 hover:to-cyan-600 transition-all duration-700 transform hover:scale-105"
+                  style={{ animationDelay: '0.2s' }}
                 >
-                  {typewriterText}
+                  Lightning-Fast
                 </span>
-                <span 
-                  className="animate-blink text-blue-500 ml-1 text-6xl font-thin"
-                  style={{
-                    textShadow: `0 0 ${15 + glowIntensity * 0.2}px rgba(59, 130, 246, 0.9)`,
-                    filter: `drop-shadow(0 0 8px rgba(6, 182, 212, 0.7))`
-                  }}
-                >
-                  |
-                </span>
-                
-                {/* Subtle background glow - reduced opacity and size */}
-                <div 
-                  className="absolute inset-0 bg-gradient-to-r from-blue-400/10 via-cyan-400/10 to-teal-400/10 blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-lg"
-                  style={{
-                    transform: `scale(${1.1 + Math.sin(glowIntensity * 0.05) * 0.05})`,
-                    top: '10%',
-                    bottom: '10%',
-                    left: '-10%',
-                    right: '-10%'
-                  }}
-                ></div>
-                
-                {/* Floating particles around text - smaller and more subtle */}
-                {isHovering && [...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-60 animate-ping"
+              </div>
+              
+              <div className="mb-2">
+                <span className="relative inline-block group">
+                  <span 
+                    className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 animate-fade-in-up transform transition-all duration-500 hover:scale-110"
+                    style={{ 
+                      animationDelay: '0.4s',
+                      textShadow: isHovering ? `0 0 ${15 + glowIntensity * 0.2}px rgba(59, 130, 246, 0.4)` : 'none',
+                      filter: isHovering ? `drop-shadow(0 0 ${8 + glowIntensity * 0.1}px rgba(6, 182, 212, 0.3))` : 'none'
+                    }}
+                  >
+                    {typewriterText}
+                  </span>
+                  <span 
+                    className="animate-blink text-blue-500 ml-1 text-6xl font-thin"
                     style={{
-                      left: `${20 + Math.random() * 60}%`,
-                      top: `${20 + Math.random() * 60}%`,
-                      animationDelay: `${i * 300}ms`,
-                      animationDuration: `${1.5 + Math.random() * 0.5}s`
+                      textShadow: `0 0 ${10 + glowIntensity * 0.1}px rgba(59, 130, 246, 0.6)`,
+                      filter: `drop-shadow(0 0 5px rgba(6, 182, 212, 0.4))`
+                    }}
+                  >
+                    |
+                  </span>
+                  
+                  {/* Subtle background glow - further reduced */}
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-r from-blue-400/5 via-cyan-400/5 to-teal-400/5 blur-xl opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-lg"
+                    style={{
+                      transform: `scale(${1.05 + Math.sin(glowIntensity * 0.03) * 0.02})`,
+                      top: '15%',
+                      bottom: '15%',
+                      left: '-5%',
+                      right: '-5%'
                     }}
                   ></div>
-                ))}
-              </span>
-              <br />
-              <span 
-                className="inline-block animate-fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800 hover:from-purple-600 hover:via-indigo-600 hover:to-blue-600 transition-all duration-700 transform hover:scale-105"
-                style={{ animationDelay: '0.6s' }}
-              >
-                from Hospital Pharmacies
-              </span>
+                  
+                  {/* Floating particles around text - even more subtle */}
+                  {isHovering && [...Array(4)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-40 animate-ping"
+                      style={{
+                        left: `${30 + Math.random() * 40}%`,
+                        top: `${30 + Math.random() * 40}%`,
+                        animationDelay: `${i * 400}ms`,
+                        animationDuration: `${2 + Math.random() * 0.5}s`
+                      }}
+                    ></div>
+                  ))}
+                </span>
+              </div>
+              
+              <div>
+                <span 
+                  className="inline-block animate-fade-in-up text-transparent bg-clip-text bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800 hover:from-purple-600 hover:via-indigo-600 hover:to-blue-600 transition-all duration-700 transform hover:scale-105"
+                  style={{ animationDelay: '0.6s' }}
+                >
+                  from Hospital Pharmacies
+                </span>
+              </div>
             </h1>
             
             <p 
@@ -490,7 +510,10 @@ function App() {
               className="flex flex-col sm:flex-row gap-4 animate-fade-in-up"
               style={{ animationDelay: '1s' }}
             >
-              <button className="group relative bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-full text-lg font-semibold overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/25 hover:scale-105">
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="group relative bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-full text-lg font-semibold overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/25 hover:scale-105"
+              >
                 <span className="relative z-10 flex items-center justify-center">
                   Get Started
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-2 transition-transform duration-300" />
@@ -499,7 +522,10 @@ function App() {
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
               </button>
               
-              <button className="group relative border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full text-lg font-semibold overflow-hidden transition-all duration-500 hover:shadow-xl hover:scale-105">
+              <button 
+                onClick={() => scrollToSection('delivery')}
+                className="group relative border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full text-lg font-semibold overflow-hidden transition-all duration-500 hover:shadow-xl hover:scale-105"
+              >
                 <span className="relative z-10">Learn More</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <span className="absolute inset-0 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center font-semibold">
@@ -553,7 +579,7 @@ function App() {
       </section>
 
       {/* Advanced Vision Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 relative overflow-hidden">
+      <section id="stats" className="py-20 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 relative overflow-hidden">
         <div className="absolute inset-0 bg-black/10"></div>
         
         {/* Animated Background Elements */}
@@ -574,7 +600,6 @@ function App() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
-            id="stats"
             className={`grid grid-cols-2 md:grid-cols-4 gap-8 transition-all duration-1000 ${
               isVisible.stats ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
