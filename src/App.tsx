@@ -336,8 +336,8 @@ function App() {
               >
                 <Phone className="h-4 w-4" />
                 <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">Contact Us</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full"></div>
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 animate-pulse rounded-full"></div>
               </button>
             </div>
 
@@ -727,7 +727,7 @@ function App() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div 
             className={`text-center mb-16 transition-all duration-1000 ${
-              isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              isVisible.Services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Complete Healthcare Technology Suite</h2>
@@ -741,7 +741,7 @@ function App() {
               <div 
                 key={index} 
                 className={`group bg-white p-6 rounded-2xl border border-gray-200 hover:border-transparent hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer relative overflow-hidden ${
-                  isVisible.services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  isVisible.Services ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ 
                   animationDelay: `${index * 150}ms`,
