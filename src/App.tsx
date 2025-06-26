@@ -314,7 +314,7 @@ function App() {
             <div className="hidden md:flex items-center space-x-8">
               {[
                 { name: 'Solutions', icon: Building2, target: 'delivery' },
-                { name: 'Features', icon: Layers, target: 'Features' },
+                { name: 'Services', icon: Layers, target: 'Services' },
                 { name: 'Technology', icon: Bot, target: 'stats' },
                 { name: 'About', icon: Info, target: 'hero' }
               ].map((item, index) => (
@@ -367,7 +367,7 @@ function App() {
           <div className="px-4 py-2 space-y-1">
             {[
               { name: 'Solutions', icon: Building2, target: 'delivery' },
-              { name: 'Features', icon: Layers, target: 'Features' },
+              { name: 'Services', icon: Layers, target: 'Services' },
               { name: 'Technology', icon: Bot, target: 'stats' },
               { name: 'About', icon: Info, target: 'hero' },
               { name: 'Contact Us', icon: Phone, target: 'contact' }
@@ -721,7 +721,7 @@ function App() {
       </section>
 
       {/* Additional Services */}
-      <section id="Features" className="py-20 relative overflow-hidden">
+      <section id="Services" className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50"></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
